@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Add Post</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <style>
+     /* hide number input */
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input[type=radio] {
+            accent-color: #990099;
+        }
+.box {
+  position: relative;
+ /* top: 50%;
+  left: 10%;*/
+  transform: translate(-50%, -50%);
+}
+.box select {
+  background-color: white;
+  color: #990099;
+  padding: 12px;
+  width: 250px;
+  border: none;
+  font-size: 25px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.box select option {
+  padding: 30px;
+}
+.color{
+color:#990099;
+font-size:17px;
+}
+.submit{
+  background-color: #990099;
+  color: white;
+  border-radius: 2px;
+  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.5);
+  padding: 12px 80px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  border: 2px solid #990099;
+  }
+  .textfield{
+border-radius: 4px;
+border: 2px solid black;
+}
+.textfield:hover{
+border: 2px solid #990099;
+}
+ .phone{
+  height:20px;
+border-radius: 4px;
+border: 1px solid black;
+}
+.phone:hover{
+border: 2px solid #990099;
+}
+.alert{
+background-color: #ffb3b3;
+height:30px;
+width:90%;
+border: none;
+border-left:8px solid red;
+border-radius: 5px;
+color:red;
+font-size: 15px;
+}
+.head{
+width:100%;
+top:0;
+background-color:#990099;
+height:40px;
+}
+.all{
+margin-left:25px;
+}
+
+*{
+font-weight:550;
+font-family: Arial, sans-serif;
+}
+a{
+color:#990099;
+text-decoration:none;
+}
+    </style>
+</head>
+<body>
+<div class="head">
+</div>
+   <br>
+    <a href="/"> <span><i class="fa fa-arrow-left"></i>Home</span></a>
+<br><br>
+                <div>
+                    {% for message in messages %}
+                    <h5 class="alert">{{message}}</h5>
+                    {% endfor %}
+                </div>
+<br>
+<div class="all">
+<form action="/user/upload"  method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+<span class="color">property image &nbsp;</span>
+        <input class="" type="file" name="property_image">
+    <br><br><br>
+<div>
+    <span class="color">area &nbsp;</span>
+                          <input class="phone" type="number" name="area">
+                          </div><br><br>
+                     <div>
+                            <span class="color">property type &nbsp;</span>
+                          <input class="phone" type="text" name="property_type">
+                          </div><br><br>
+                     <div><span class="color">price per month &nbsp;</span>
+                          <input class="price" type="number" name="price" placeholder="&nbsp;&#8377;">
+                     </div><br><br>
+                    <div>
+                           <spam class="color">location</spam><br>
+                                        <textarea class="textfield" cols="40" rows="5" name="location" placeholder="location" ></textarea>
+                                        <br><br><br>
+                              <div align="center">
+                                        <button class="submit" type="submit" >Upload</button>
+                              </div>
+                    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>My List</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.data{
+background-color:white;
+border: 2px solid #990099;
+font-family: Arial, sans-serif;
+margin:0px 5% 0px 5%;
+  border-radius: 7px;
+  }
+.line{
+  height:7px;
+  width:8%;
+  color:#990099;
+ background-color:#990099;
+ border-radius:5px;
+}
+.tablinks{
+color: black;
+background-color: white;
+  border-radius: 10px;
+  padding: 5px 15px;
+  font-weight:600;
+  font-family: Arial, sans-serif;
+  border: 2px solid black;
+  margin-left:25px;
+}
+.tablinks:hover{
+color: white;
+background-color: black;
+border: 2px solid black;
+}
+.eachstar{
+ color:gold;
+ }
+ .right{
+float:right;
+margin-right:6%;
+}
+  .head{
+width:100%;
+top:0;
+background-color:#990099;
+height:40px;
+}
+a{
+text-decoration:none;
+color:#990099;
+}
+ *{
+           color :white;
+            font-weight:550;
+        }
+        a {
+        text-decoration : none;
+        }
+        body {
+           background-image: url("{% static 'images/movie-image.jpg' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            max-width: 100%;
+           height: auto;
+         }
+    #shinebut {
+    border: none;
+    border-radius: 1px;
+    padding: 5px 20px;
+    color:white;
+    background: #990099;
+    position: relative;
+    overflow: hidden;
+}
+@keyframes shine {
+    0% {left: -100px}
+    20% {left: 100%}
+    100% {left: 100%}
+}
+#shinebut:before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+        120deg,
+        rgba(255,255,255, 0) 30%,
+        rgba(255,255,255, .8),
+        rgba(255,255,255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    animation: shine 2s infinite linear; /* Animation */
+}
+.violetbutton{
+color: white;
+background-color: #990099;
+  border-radius: 4px;
+  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.5);
+  padding: 4px 15px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  float:right;
+  border: 1px solid #990099;
+  margin: 0px 8px 0px 0px;
+}
+.violetbutton:hover{
+border: 2px solid #990099;
+}
+        .property_image {
+        margin: 10px 10px 10px 10px;
+            width : 150px;
+            height : 150px;
+            float: left;
+        }
+        .post{
+       /* From https://css.glass */
+background: rgba(0, 0, 0, 0.47);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(0, 0, 0, 0.3);
+border-radius: 5px;
+box-shadow: 0 0 10px 0 black;
+border: 1px solid white;
+}
+        .movie_details {
+        margin: 10px 10px 10px 10px;
+        }
+        .search {
+        float : right;
+        background: black;
+        margin-right: 10px;
+        border : none;
+        color: white;
+        border-bottom: 1px solid white;
+        }
+
+        .upload a, .upload a i{
+        color : black;
+        }
+    h3{
+    color:black;
+    }
+</style>
+</head>
+<body  onload="onloadfun()">
+<script>
+    function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+function onloadfun(){
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+}
+
+</script>
+
+<div class="head">
+</div>
+
+<br><a href="/"> <span><i class="fa fa-arrow-left"></i>Home</span></a>
+<br><br><br>
+<div>
+
+<button class="tablinks" onclick="openCity(event, 'Bookmark')" id="defaultOpen">My Bookmark</button>
+    <button class="tablinks" onclick="openCity(event, 'Likes')">My Likes</button>
+  </div>
+
+<div id="Bookmark" class="tabcontent">
+    <h3>My Bookmark</h3>
+
+    <div  class="line"></div><br>
+	{% if not bookmarks_post_list %}
+	<br><br>
+	<div align="center">
+<b>Empty</b><br><br>
+		</div>
+    {% endif %}
+
+{% for post in bookmarks_post_list reversed %}
+        <br>
+        <div class="post">
+               <img class="property_image" src="{{post.property_image.url}}" alt="" />
+            <div class="movie_details" align="right"><br>
+                price:{{post.price}}<br><br>
+                area: {{post.area}} sqft<br>
+                {{post.genre}}<br><br>
+
+        <br>
+
+            <small class="viewcount"><i class="fa fa-eye"></i>&nbsp;
+        {% load my_filter %}
+		{% if post.no_of_views <= 999 %}
+		{{post.no_of_views}}
+		{% elif post.no_of_views <= 1000 and post.no_of_views <= 999999 %}
+		{{ post.no_of_views|countkm:1000 }}K+
+		{% else %}
+		{{ post.no_of_views|countkm:1000000 }}M+
+		{% endif %}</small>
+</div>
+        <a href="/post/{{post.id}}" ><button class="violetbutton" id="shinebut" type="submit">
+            VIEW </button></a>
+<br><br>
+</div>
+    {% endfor %}
+    </div>
+
+<div id="Likes" class="tabcontent">
+    <h3> My Likes</h3>
+    <div  class="line"></div><br>
+
+{% for post in likes_post_list reversed %}
+        <br>
+        <div class="post">
+               <img class="property_image" src="{{post.property_image.url}}" alt="" />
+            <div class="movie_details" align="right"><br>
+                price:{{post.price}}<br><br>
+                area: {{post.area}} sqft<br>
+                {{post.genre}}<br><br>
+
+        <br>
+            <small class="viewcount"><i class="fa fa-eye"></i>&nbsp;
+        {% load my_filter %}
+		{% if post.no_of_views <= 999 %}
+		{{post.no_of_views}}
+		{% elif post.no_of_views <= 1000 and post.no_of_views <= 999999 %}
+		{{ post.no_of_views|countkm:1000 }}K+
+		{% else %}
+		{{ post.no_of_views|countkm:1000000 }}M+
+		{% endif %}</small>
+</div>
+        <a href="/post/{{post.id}}" ><button class="violetbutton" id="shinebut" type="submit">
+            VIEW </button></a>
+
+<br><br>
+</div>
+    {% endfor %}
+    </div>
+</div>
+</body>
+</html>

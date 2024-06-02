@@ -1,0 +1,84 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Register</title>
+    <meta charset="utf-8">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'css/style1.css' %}">
+</head>
+
+<body>
+ <div class="head">
+	<div align="left">
+        <a href="/user/signin"><span class="span">LOGIN</span></a>
+    </div>
+</div>
+ <br><br><br><br><br>
+
+        <div>
+            <div>
+                <div align="center">
+                <span class="register">User - REGISTER</span>
+                    </div>
+                <div>
+<br><br>
+                    {% for message in messages %}
+                    <h5 class="alert">{{message}}</h5>
+                    {% endfor %}
+                </div>
+<br><br>
+
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                    <span>username  </span>
+                    <input class="form-field" type="text" name="username" placeholder="username">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                    <span>First Name  </span>
+                    <input class="form-field" type="text" name="firstname" placeholder="First Name">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                    <span>Last Name  </span>
+                    <input class="form-field" type="text" name="lastname" placeholder="Last Name">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                    <span> Email  </span>
+                    <input class="form-field" type="email" name="email" placeholder="Email">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                    <span> Phone  </span>
+                    <input class="form-field" type="number" name="phone" placeholder="Phone">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <span>Password</span>
+                        <input class="form-field" type="password" name="password" placeholder="Password" >
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <span> re-Enter Password </span>
+                        <input class="form-field" type="password" name="password2" placeholder="re-Enter Password" >
+                    </div>
+                    <br>
+<br><br>
+                    <div align="center">
+                    <button type="submit" class="submit">Sign Up</button>
+                    </div>
+ <br><br><br>
+                    <div align="center">
+                        <p> Do you have an account? <a href="/customer/signin"> Login </a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+</body>
+</html>

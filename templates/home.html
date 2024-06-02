@@ -1,0 +1,290 @@
+ {% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" xmlns="http://www.w3.org/1999/html"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Rentify</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6824956161956839"
+     crossorigin="anonymous"></script>
+
+    <style>
+.searchbar{
+/*background-color: #7FFFD4;*/
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #990099;
+    width:130px;
+    position:flex;
+    }
+    .req{
+    border-right: 1px solid #990099;
+padding: 8px 8px;
+width:110px;
+/*background-color: #7FFFD4;*/
+  border-radius: 60px;
+  }
+.reqbut{
+background-color:white;
+border:2px solid white;
+padding:4px 4px;
+border-radius: 40px;
+color:#990099;
+font-size:15px;
+font-family: Arial, sans-serif;
+}
+.searchbarsite{
+/*background-color: #7FFFD4;*/
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    width:120px;
+    position:flex;
+    }
+    .reqsite{
+padding: 8px 8px;
+width:100px;
+/*background-color: #7FFFD4;*/
+  border-radius: 60px;
+  }
+.reqbutsite{
+background-color:white;
+border:2px solid white;
+padding:4px 4px;
+border-radius: 40px;
+color:black;
+font-size:15px;
+font-family: Arial, sans-serif;
+}
+.button{
+font-family: Arial, sans-serif;
+height: 60px;
+background-color:white;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  padding-top:5px;
+  padding-bottom:5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius:5px;
+}
+.button:hover {
+box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+hr{
+border:1px solid #990099;
+width:80%;
+}
+b{
+margin-left:10px;
+color:#990099;
+border-bottom: 3px solid #ff99ff;
+}
+.submit{
+  background-color: #990099;
+  color: white;
+  border-radius: 2px;
+  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.5);
+  padding: 5px 30px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  border:3px solid #990099;
+  }
+        .head {
+           padding : 10px ;
+           border-bottom: 3px solid white;
+           color : white;
+           background-color: #990099;
+        }
+        .menu {
+            margin-left : 30px;
+            color : white;
+            padding : 5px 15px;
+           border-radius: 2px;
+        }
+        *{
+           color : white;
+            font-weight:550;
+        }
+
+        a {
+        text-decoration : none;
+        }
+        body {
+           background-image: url("{% static 'images/movie-image.jpg' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            max-width: 100%;
+           height: auto;
+         }
+        .section {
+        margin: 20px 20px 20px 20px;
+        border-radius: 10px;
+        }
+        /* shine animation */
+  #shinebut {
+    border: none;
+    border-radius: 1px;
+    padding: 5px 20px;
+    color:white;
+    background: #990099;
+    position: relative;
+    overflow: hidden;
+}
+@keyframes shine {
+    0% {left: -100px}
+    20% {left: 100%}
+    100% {left: 100%}
+}
+#shinebut:before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+        120deg,
+        rgba(255,255,255, 0) 30%,
+        rgba(255,255,255, .8),
+        rgba(255,255,255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    animation: shine 2s infinite linear; /* Animation */
+}
+.violetbutton{
+color: white;
+background-color: #990099;
+  border-radius: 4px;
+  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.5);
+  padding: 4px 15px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  float:right;
+  border: 1px solid #990099;
+  margin: 0px 8px 0px 0px;
+}
+.violetbutton:hover{
+border: 2px solid #990099;
+}
+        .property_image {
+        margin: 10px 10px 10px 10px;
+            width : 150px;
+            height : 150px;
+            float: left;
+        }
+        .post{
+       /* From https://css.glass */
+background: rgba(0, 0, 0, 0.47);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(0, 0, 0, 0.3);
+border-radius: 5px;
+box-shadow: 0 0 10px 0 black;
+border: 1px solid white;
+}
+        .movie_details {
+        margin: 10px 10px 10px 10px;
+        }
+        .search {
+        float : right;
+        background: black;
+        margin-right: 10px;
+        border : none;
+        color: white;
+        border-bottom: 1px solid white;
+        }
+
+        .upload a, .upload a i{
+        color : black;
+        }
+        .menu{
+        color:black;
+        }
+        .redbutton{
+        float:right;
+        color:white;
+        background-color:red;
+        border:none;
+        padding:7px;
+        }
+</style>
+</head>
+<body>
+
+<div class="head" align="right">
+          {% if request.user.is_anonymous %}
+    <div>
+        <span class="menu"><a class ="menu-a" href="/user/signin">Login</a></span>
+        <span class="menu"><a class ="menu-a" href="/user/signup">Register</a></span>
+     </div>
+          {% else %}
+    <div class="menu">
+         <span class="menu"><a class ="menu-a" href="/user/mylist">My List</a></span>
+        <span class="menu"><a class ="menu-a" href="/user/logout">Logout</a></span>
+    </div>
+          {% endif %}
+
+    </div>
+<br><br><br><br><br>
+<div>
+    <div align="right">
+<b>search all property in Rentify</b>
+  </div>
+    <div align="right">
+<form action="/user/search" method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <button class="violetbutton" type="submit"> Search</button>
+    <input class="search" name="location" placeholder="location">
+</form>
+    </div>
+
+</div>
+
+ {% if not request.user.is_anonymous %}
+<h3 class="menu">Manage Property</h3>
+  <div class="upload" align = "center">
+      <a href="/user/addpost"><i class="fa fa-upload"></i> Upload Your property</a>
+</div>
+{% for post in post_list reversed %}
+        <br>
+        <div class="post">
+               <img class="property_image" src="{{post.property_image.url}}" alt="" />
+            <div class="movie_details" align="right"><br>
+                price:{{post.price}}<br><br>
+                area: {{post.area}} sqft<br>
+                {{post.genre}}<br><br>
+
+        <br>
+
+            <small class="viewcount"><i class="fa fa-eye"></i>&nbsp;
+        {% load my_filter %}
+		{% if post.no_of_views <= 999 %}
+		{{post.no_of_views}}
+		{% elif post.no_of_views <= 1000 and post.no_of_views <= 999999 %}
+		{{ post.no_of_views|countkm:1000 }}K+
+		{% else %}
+		{{ post.no_of_views|countkm:1000000 }}M+
+		{% endif %}</small>
+</div>
+<a href="/user/deletepost/{{post.id}}" ><button class="redbutton"  type="submit">
+            Delete </button></a>
+        <a href="/post/{{post.id}}" ><button class="violetbutton" id="shinebut" type="submit">
+            VIEW </button></a>
+
+<br><br>
+</div>
+    {% endfor %}
+    </div>
+          {% endif %}
+</div>
+</body>
+</html>

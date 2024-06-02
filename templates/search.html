@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.line{
+  height:7px;
+  width:8%;
+  color:#990099;
+ background-color:#990099;
+ border-radius:5px;
+}
+.eachstar{
+ color:gold;
+ }
+  .head{
+width:100%;
+top:0;
+background-color:#990099;
+height:40px;
+}
+ *{
+           color :white;
+            font-weight:550;
+        }
+        a {
+        text-decoration : none;
+        }
+        body {
+           background-image: url("{% static 'images/movie-image.jpg' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            max-width: 100%;
+           height: auto;
+         }
+    #shinebut {
+    border: none;
+    border-radius: 1px;
+    padding: 5px 20px;
+    color:white;
+    background: #990099;
+    position: relative;
+    overflow: hidden;
+}
+@keyframes shine {
+    0% {left: -100px}
+    20% {left: 100%}
+    100% {left: 100%}
+}
+#shinebut:before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+        120deg,
+        rgba(255,255,255, 0) 30%,
+        rgba(255,255,255, .8),
+        rgba(255,255,255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    animation: shine 2s infinite linear; /* Animation */
+}
+.violetbutton{
+color: white;
+background-color: #990099;
+  border-radius: 4px;
+  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.5);
+  padding: 4px 15px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  float:right;
+  border: 1px solid #990099;
+  margin: 0px 8px 0px 0px;
+}
+.violetbutton:hover{
+border: 2px solid #990099;
+}
+        .property_image {
+        margin: 10px 10px 10px 10px;
+            width : 150px;
+            height : 150px;
+            float: left;
+        }
+        .post{
+       /* From https://css.glass */
+background: rgba(0, 0, 0, 0.47);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(0, 0, 0, 0.3);
+border-radius: 5px;
+box-shadow: 0 0 10px 0 black;
+border: 1px solid white;
+}
+        .movie_details {
+        margin: 10px 10px 10px 10px;
+        }
+        .search {
+        float : right;
+        background: black;
+        margin-right: 10px;
+        border : none;
+        color: white;
+        border-bottom: 1px solid white;
+        }
+        .upload a, .upload a i{
+        color : black;
+        }
+    h3, .d{
+    color:black;
+    }
+</style>
+</head>
+<body>
+<div class="head">
+
+</div>
+
+<br><a href="/"> <span class="d"><i class="fa fa-arrow-left"></i>Home</span></a>
+<br><br><br>
+{% if not post_list %}
+	<br><br>
+	<div align="center">
+<b class="d">Empty</b>
+	<br><br>
+		</div>
+    {% endif %}
+{% for post in post_list reversed %}
+        <br>
+        <div class="post">
+               <img class="property_image" src="{{post.property_image.url}}" alt="" />
+            <div class="movie_details" align="right"><br>
+                price:{{post.price}}<br><br>
+                area: {{post.area}} sqft<br>
+                {{post.genre}}<br><br>
+        <br>
+            <small class="viewcount"><i class="fa fa-eye"></i>&nbsp;
+        {% load my_filter %}
+		{% if post.no_of_views <= 999 %}
+		{{post.no_of_views}}
+		{% elif post.no_of_views <= 1000 and post.no_of_views <= 999999 %}
+		{{ post.no_of_views|countkm:1000 }}K+
+		{% else %}
+		{{ post.no_of_views|countkm:1000000 }}M+
+		{% endif %}</small>
+</div>
+
+        <a href="/post/{{post.id}}" ><button class="violetbutton" id="shinebut" type="submit">
+            VIEW </button></a>
+
+<br><br>
+</div>
+    {% endfor %}
+    </div>
+
+</div>
+</body>
+</html>
